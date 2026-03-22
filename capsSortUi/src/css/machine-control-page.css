@@ -1,0 +1,41 @@
+.machine-control-page {
+  display: flex;
+  flex-direction: column;
+  gap: 20px;
+}
+.machine-control-page__toolbar {
+  display: flex;
+  align-items: flex-start;
+  justify-content: space-between;
+  gap: 24px;
+  padding: 24px 28px;
+  border: 1px solid #a9a9a9;
+  border-radius: 12px;
+  background: #ffffff;
+}
+.machine-control-page__settings {
+  display: flex;
+  align-items: center;
+  gap: 28px;
+}
+.machine-control-page__content {
+  display: grid;
+  grid-template-columns: minmax(0, 1fr) 320px;
+  gap: 20px;
+  align-items: start;
+}
+
+@media (max-width: 991px) {
+  .machine-control-page__toolbar {
+    flex-direction: column;
+    align-items: stretch;
+  }
+  .machine-control-page__settings {
+    flex-direction: column;
+    align-items: stretch;
+    gap: 16px;
+  }
+  .machine-control-page__content {
+    grid-template-columns: 1fr;
+  }
+}

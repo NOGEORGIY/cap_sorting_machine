@@ -1,0 +1,71 @@
+@import "./nullstyle";
+
+body {
+  background: #f3f3f3;
+  color: #222;
+  font-family: Arial, Helvetica, sans-serif;
+}
+
+#root {
+  min-height: 100vh;
+}
+.wrapper {
+  display: flex;
+  flex-direction: column;
+  min-height: 100vh;
+}
+
+.content {
+  flex: 1;
+  width: 100%;
+  display: flex;
+  flex-direction: column;
+  margin: 0 auto;
+
+  /* добавим чуть “воздуха” между блоками внутри */
+  gap: 20px;
+}
+
+/* контейнер: чуть аккуратнее на больших экранах */
+.container {
+  width: 100%;
+  margin: 0 auto;
+  padding: 50px 15px;
+
+  /* чтоб не “прилипало” к краям на широких */
+  box-sizing: border-box;
+
+  @media (max-width: 420px) {
+    padding: 40px 25px;
+  }
+}
+
+/* твои брейкпоинты — оставляем, только добавим box-sizing */
+@media (min-width: 768px) and (max-width: 991px) {
+  .container {
+    max-width: 46.25rem;
+  }
+}
+
+@media (min-width: 992px) and (max-width: 1199px) {
+  .container {
+    max-width: 65rem;
+  }
+}
+
+@media (min-width: 1200px) {
+  .container {
+    max-width: 71.25rem;
+  }
+}
+
+@import "./machine-control-page";
+@import "./page-header";
+@import "./machine-controls";
+@import "./machine-status";
+@import "./color-select";
+@import "./machine-blocks";
+@import "./message-log";
+@import "./machine-scheme";
+@import "./system-info";
+@import "./page-footer";

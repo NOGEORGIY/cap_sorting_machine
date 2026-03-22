@@ -1,0 +1,18 @@
+.page-footer {
+  padding: 16px 20px;
+  border-radius: 12px;
+  background: #ffffff;
+  box-shadow: 0 4px 18px rgba(15, 23, 42, 0.05);
+
+  &__inner {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+  }
+
+  &__text {
+    font-size: 14px;
+    line-height: 1.4;
+    text-align: center;
+  }
+}

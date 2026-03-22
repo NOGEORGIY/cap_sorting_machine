@@ -1,0 +1,23 @@
+.color-select {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 8px;
+
+  &__label {
+    font-size: 18px;
+    line-height: 1.2;
+  }
+
+  &__control {
+    width: 100%;
+    padding: 14px 18px;
+
+    border: 1px solid #a9a9a9;
+    border-radius: 8px;
+    background: #ffffff;
+    color: #222;
+    font-size: 18px;
+    line-height: 1.2;
+  }
+}

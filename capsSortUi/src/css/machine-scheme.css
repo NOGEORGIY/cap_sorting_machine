@@ -1,0 +1,12 @@
+.machine-scheme {
+  padding: 20px;
+  border: 1px solid #a9a9a9;
+  border-radius: 12px;
+  background: #ffffff;
+  overflow-x: auto;
+}
+.machine-scheme canvas {
+  display: block;
+  width: 100%;
+  height: auto;
+}

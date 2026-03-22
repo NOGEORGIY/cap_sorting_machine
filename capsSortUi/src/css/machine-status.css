@@ -1,0 +1,26 @@
+.machine-status {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+}
+.machine-status__label {
+  font-size: 18px;
+  line-height: 1.2;
+}
+.machine-status__value {
+  width: 100%;
+  min-width: 100px;
+  padding: 12px 18px;
+  border: 1px solid #a9a9a9;
+  border-radius: 8px;
+  background: #ffffff;
+  font-size: 18px;
+  line-height: 1.2;
+  text-align: center;
+}
+@media (max-width: 768px) {
+  .machine-status__value {
+    font-size: 14px;
+    padding: 10px 14px;
+  }
+}

@@ -1,0 +1,24 @@
+.machine-controls {
+  &__actions {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    flex: 1 1 auto;
+    gap: 12px;
+  }
+
+  &__button {
+    width: 100%;
+    padding: 16px 24px;
+    border: 1px solid #a9a9a9;
+    border-radius: 8px;
+    background: #f7f7f7;
+    color: #222;
+    font-size: 18px;
+    line-height: 1.2;
+    @media (max-width: 420px) {
+      font-size: 16px;
+      padding: 10px 14px;
+    }
+  }
+}
