@@ -9,13 +9,17 @@ import schemas
 def get_settings(db: Session) -> Optional[models.SystemSettings]:
     return db.query(models.SystemSettings).filter(models.SystemSettings.id == 1).first()
 
-def update_settings(db: Session, target_color: str) -> Optional[models.SystemSettings]:
-    """Обновить целевой цвет в настройках"""
+def update_settings(db: Session, target_color: str = None, is_enabled: bool = None) -> Optional[models.SystemSettings]:
+    """Обновить настройки системы"""
     settings = get_settings(db)
     if not settings:
-        return None
+        settings = initialize_settings(db)
 
-    settings.target_color = target_color
+    if target_color is not None:
+        settings.target_color = target_color
+
+    if is_enabled is not None:
+        settings.is_enabled = is_enabled
 
     db.commit()
     db.refresh(settings)
