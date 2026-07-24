@@ -1,0 +1,59 @@
+.machine-control-page {
+  display: flex;
+  flex-direction: column;
+  gap: 20px;
+}
+
+/* ===== ТУЛБАР ===== */
+.machine-control-page__toolbar {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 24px;
+  padding: 24px 28px;
+  border: 1px solid #a9a9a9;
+  border-radius: 12px;
+  background: #ffffff;
+  flex-wrap: wrap;
+}
+
+/* ===== НАСТРОЙКИ (правый блок) ===== */
+.machine-control-page__settings {
+  display: flex;
+  align-items: center;
+  gap: 28px;
+  flex-wrap: wrap;
+}
+
+/* ===== КОНТЕНТ (блоки + журнал) ===== */
+.machine-control-page__content {
+  display: grid;
+  grid-template-columns: minmax(0, 1fr) 320px;
+  gap: 20px;
+  align-items: start;
+}
+
+/* ===== АДАПТИВНОСТЬ ===== */
+@media (max-width: 991px) {
+  .machine-control-page__toolbar {
+    flex-direction: column;
+    align-items: stretch;
+  }
+
+  .machine-control-page__settings {
+    flex-direction: column;
+    align-items: stretch;
+    gap: 16px;
+  }
+
+  .machine-control-page__content {
+    grid-template-columns: 1fr;
+  }
+}
+
+@media (max-width: 768px) {
+  .machine-control-page__settings {
+    flex-direction: column;
+    align-items: stretch;
+  }
+}

@@ -1,0 +1,19 @@
+.machine-scheme {
+  padding: 20px;
+  border: 1px solid #a9a9a9;
+  border-radius: 12px;
+  background: #ffffff;
+  overflow-x: auto;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  min-height: 200px;
+}
+
+.machine-scheme canvas {
+  display: block;
+  width: 100%;
+  height: auto;
+  max-width: 900px;
+  margin: 0 auto;
+}

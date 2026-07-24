@@ -1,0 +1,382 @@
+--
+-- PostgreSQL database dump
+--
+
+\restrict b20GCERVvL0nTPHzrCc4DSjZmM9T7CZkX0SgNOLDBqkf6pRoSwAsIRvwUaWIyBL
+
+-- Dumped from database version 18.4
+-- Dumped by pg_dump version 18.4
+
+-- Started on 2026-07-24 17:00:21
+
+SET statement_timeout = 0;
+SET lock_timeout = 0;
+SET idle_in_transaction_session_timeout = 0;
+SET transaction_timeout = 0;
+SET client_encoding = 'UTF8';
+SET standard_conforming_strings = on;
+SELECT pg_catalog.set_config('search_path', '', false);
+SET check_function_bodies = false;
+SET xmloption = content;
+SET client_min_messages = warning;
+SET row_security = off;
+
+--
+-- TOC entry 854 (class 1247 OID 16390)
+-- Name: color_enum; Type: TYPE; Schema: public; Owner: postgres
+--
+
+CREATE TYPE public.color_enum AS ENUM (
+    'red',
+    'orange',
+    'yellow',
+    'green',
+    'lightblue',
+    'blue',
+    'white',
+    'black',
+    'sky_blue',
+    'purple',
+    'pink',
+    'brown',
+    'unknown'
+);
+
+
+ALTER TYPE public.color_enum OWNER TO postgres;
+
+SET default_tablespace = '';
+
+SET default_table_access_method = heap;
+
+--
+-- TOC entry 219 (class 1259 OID 16407)
+-- Name: sorting_logs; Type: TABLE; Schema: public; Owner: postgres
+--
+
+CREATE TABLE public.sorting_logs (
+    id integer NOT NULL,
+    "timestamp" timestamp with time zone DEFAULT now() NOT NULL,
+    detected_color public.color_enum NOT NULL,
+    target_color public.color_enum NOT NULL,
+    is_success boolean NOT NULL
+);
+
+
+ALTER TABLE public.sorting_logs OWNER TO postgres;
+
+--
+-- TOC entry 220 (class 1259 OID 16416)
+-- Name: sorting_logs_id_seq; Type: SEQUENCE; Schema: public; Owner: postgres
+--
+
+CREATE SEQUENCE public.sorting_logs_id_seq
+    AS integer
+    START WITH 1
+    INCREMENT BY 1
+    NO MINVALUE
+    NO MAXVALUE
+    CACHE 1;
+
+
+ALTER SEQUENCE public.sorting_logs_id_seq OWNER TO postgres;
+
+--
+-- TOC entry 5030 (class 0 OID 0)
+-- Dependencies: 220
+-- Name: sorting_logs_id_seq; Type: SEQUENCE OWNED BY; Schema: public; Owner: postgres
+--
+
+ALTER SEQUENCE public.sorting_logs_id_seq OWNED BY public.sorting_logs.id;
+
+
+--
+-- TOC entry 221 (class 1259 OID 16417)
+-- Name: system_settings; Type: TABLE; Schema: public; Owner: postgres
+--
+
+CREATE TABLE public.system_settings (
+    id integer NOT NULL,
+    target_color public.color_enum DEFAULT 'blue'::public.color_enum NOT NULL,
+    is_enabled boolean DEFAULT false NOT NULL,
+    proximity_active boolean DEFAULT false NOT NULL,
+    CONSTRAINT system_settings_id_check CHECK ((id = 1))
+);
+
+
+ALTER TABLE public.system_settings OWNER TO postgres;
+
+--
+-- TOC entry 4863 (class 2604 OID 16426)
+-- Name: sorting_logs id; Type: DEFAULT; Schema: public; Owner: postgres
+--
+
+ALTER TABLE ONLY public.sorting_logs ALTER COLUMN id SET DEFAULT nextval('public.sorting_logs_id_seq'::regclass);
+
+
+--
+-- TOC entry 5022 (class 0 OID 16407)
+-- Dependencies: 219
+-- Data for Name: sorting_logs; Type: TABLE DATA; Schema: public; Owner: postgres
+--
+
+COPY public.sorting_logs (id, "timestamp", detected_color, target_color, is_success) FROM stdin;
+1	2026-03-28 11:44:54.436345+00	red	blue	t
+2	2026-03-28 11:58:22.314356+00	yellow	blue	f
+3	2026-03-28 11:58:24.687169+00	red	blue	f
+4	2026-03-28 11:58:26.990312+00	red	blue	f
+5	2026-03-28 11:58:29.293601+00	white	blue	f
+6	2026-03-28 11:58:31.63947+00	lightblue	blue	f
+7	2026-03-28 11:58:33.95808+00	black	blue	f
+8	2026-03-28 11:58:36.285503+00	black	blue	f
+9	2026-03-28 11:58:38.634147+00	green	blue	f
+10	2026-03-28 11:58:40.959561+00	green	blue	f
+11	2026-03-28 11:58:43.280113+00	orange	blue	f
+12	2026-03-28 11:58:45.588874+00	lightblue	blue	f
+13	2026-03-28 11:58:47.884939+00	red	blue	f
+14	2026-03-28 11:58:50.207174+00	blue	blue	t
+15	2026-03-28 11:58:52.534292+00	yellow	blue	f
+16	2026-07-23 06:50:48.017405+00	blue	red	f
+17	2026-07-23 06:51:02.780285+00	blue	red	f
+18	2026-07-23 06:51:47.446961+00	blue	red	f
+19	2026-07-23 06:51:51.80486+00	blue	red	f
+20	2026-07-23 06:53:18.050046+00	blue	red	f
+21	2026-07-23 07:32:18.669232+00	red	red	t
+22	2026-07-23 07:32:19.733173+00	red	red	t
+23	2026-07-23 07:32:23.640026+00	blue	red	f
+24	2026-07-23 07:32:24.674964+00	blue	red	f
+25	2026-07-23 07:32:57.526921+00	red	red	t
+26	2026-07-23 07:32:58.546313+00	red	red	t
+27	2026-07-23 07:33:05.833686+00	blue	red	f
+28	2026-07-23 07:33:06.862763+00	blue	red	f
+29	2026-07-23 07:34:25.791206+00	red	red	t
+30	2026-07-23 07:34:26.83331+00	red	red	t
+31	2026-07-23 07:34:30.690561+00	blue	red	f
+32	2026-07-23 07:34:31.722488+00	blue	red	f
+33	2026-07-23 07:34:35.136557+00	blue	red	f
+34	2026-07-23 07:34:36.170593+00	blue	red	f
+35	2026-07-23 07:34:39.757074+00	red	red	t
+36	2026-07-23 07:34:40.782318+00	red	red	t
+37	2026-07-23 07:34:54.558683+00	green	red	f
+38	2026-07-23 07:34:55.610104+00	green	red	f
+39	2026-07-23 07:46:23.485876+00	red	red	t
+40	2026-07-23 07:46:24.540544+00	red	red	t
+41	2026-07-23 07:46:39.752722+00	blue	red	f
+42	2026-07-23 07:46:40.772544+00	blue	red	f
+43	2026-07-23 07:47:18.809638+00	red	red	t
+44	2026-07-23 07:47:19.837935+00	red	red	t
+45	2026-07-23 07:47:22.269028+00	red	red	t
+46	2026-07-23 07:47:23.290023+00	red	red	t
+47	2026-07-23 07:49:51.913451+00	blue	red	f
+48	2026-07-23 07:49:52.932604+00	blue	red	f
+49	2026-07-23 07:50:16.212496+00	red	red	t
+50	2026-07-23 07:50:17.237862+00	red	red	t
+51	2026-07-23 07:50:19.967377+00	blue	red	f
+52	2026-07-23 07:50:21.003106+00	blue	red	f
+53	2026-07-23 07:52:34.37402+00	blue	red	f
+54	2026-07-23 07:52:35.412998+00	blue	red	f
+55	2026-07-23 07:54:39.491125+00	red	red	t
+56	2026-07-23 07:54:40.531627+00	red	red	t
+57	2026-07-23 07:55:06.268448+00	red	red	t
+58	2026-07-23 07:55:07.306165+00	red	red	t
+59	2026-07-23 07:55:20.636516+00	red	red	t
+60	2026-07-23 07:55:21.656277+00	red	red	t
+61	2026-07-23 07:55:25.069067+00	blue	red	f
+62	2026-07-23 07:55:26.103536+00	blue	red	f
+63	2026-07-23 07:56:46.810287+00	blue	red	f
+64	2026-07-23 07:56:47.837133+00	blue	red	f
+65	2026-07-23 07:57:02.303729+00	green	red	f
+66	2026-07-23 07:57:03.339469+00	green	red	f
+67	2026-07-23 07:57:22.896033+00	blue	red	f
+68	2026-07-23 07:57:23.910537+00	blue	red	f
+69	2026-07-23 07:57:31.892141+00	red	red	t
+70	2026-07-23 07:57:32.918036+00	red	red	t
+71	2026-07-23 07:58:05.711205+00	red	red	t
+72	2026-07-23 07:58:06.741303+00	red	red	t
+73	2026-07-23 07:58:47.302884+00	blue	red	f
+74	2026-07-23 07:58:48.333162+00	blue	red	f
+75	2026-07-23 08:00:44.336967+00	blue	red	f
+76	2026-07-23 08:00:45.370311+00	blue	red	f
+77	2026-07-23 08:00:53.722893+00	blue	red	f
+78	2026-07-23 08:00:54.76024+00	blue	red	f
+79	2026-07-23 08:01:07.155327+00	blue	red	f
+80	2026-07-23 08:01:08.188454+00	blue	red	f
+81	2026-07-23 08:02:39.293879+00	red	red	t
+82	2026-07-23 08:02:40.33974+00	red	red	t
+83	2026-07-23 08:03:17.013774+00	blue	red	f
+84	2026-07-23 08:03:18.044379+00	blue	red	f
+85	2026-07-23 08:05:46.21608+00	red	red	t
+86	2026-07-23 08:05:48.349436+00	red	red	t
+87	2026-07-23 08:06:29.120044+00	red	red	t
+88	2026-07-23 08:06:31.236797+00	red	red	t
+89	2026-07-23 08:06:32.861904+00	red	red	t
+90	2026-07-23 08:06:35.013284+00	red	red	t
+91	2026-07-23 08:06:43.119259+00	red	red	t
+92	2026-07-23 08:06:45.25287+00	red	red	t
+93	2026-07-23 08:06:53.423331+00	blue	red	f
+94	2026-07-23 08:06:55.52417+00	blue	red	f
+95	2026-07-23 08:09:56.747576+00	green	red	f
+96	2026-07-23 08:10:00.816451+00	green	red	f
+97	2026-07-23 08:10:00.872083+00	red	red	t
+98	2026-07-23 08:10:04.906954+00	red	red	t
+99	2026-07-23 08:10:08.348593+00	red	red	t
+100	2026-07-23 08:10:12.386075+00	red	red	t
+101	2026-07-23 08:10:12.405657+00	red	red	t
+102	2026-07-23 08:10:16.463152+00	red	red	t
+103	2026-07-23 08:10:33.636011+00	blue	red	f
+104	2026-07-23 08:10:35.73417+00	blue	red	f
+105	2026-07-23 08:10:46.273505+00	red	red	t
+106	2026-07-23 08:10:48.426721+00	red	red	t
+107	2026-07-23 08:10:49.812865+00	red	red	t
+108	2026-07-23 08:10:52.028989+00	red	red	t
+109	2026-07-23 08:11:04.876389+00	red	red	t
+110	2026-07-23 08:11:07.086157+00	red	red	t
+111	2026-07-23 08:11:08.122494+00	red	red	t
+112	2026-07-23 08:11:10.327581+00	red	red	t
+113	2026-07-23 08:11:15.483705+00	green	red	f
+114	2026-07-23 08:11:17.599595+00	green	red	f
+115	2026-07-23 08:11:18.326076+00	red	red	t
+116	2026-07-23 08:12:10.465834+00	red	red	t
+117	2026-07-23 08:12:12.671683+00	red	red	t
+118	2026-07-23 08:12:20.536135+00	red	red	t
+119	2026-07-23 08:12:22.66922+00	red	red	t
+120	2026-07-23 08:12:24.585467+00	green	red	f
+121	2026-07-23 08:12:26.704754+00	green	red	f
+122	2026-07-23 08:12:28.485077+00	red	red	t
+123	2026-07-23 08:12:30.641971+00	red	red	t
+124	2026-07-23 09:05:23.96092+00	black	red	f
+125	2026-07-23 09:05:28.053788+00	black	red	f
+126	2026-07-23 09:05:51.368751+00	red	red	t
+127	2026-07-23 09:05:55.476554+00	red	red	t
+128	2026-07-23 09:07:03.522883+00	green	red	f
+129	2026-07-23 09:07:05.68438+00	green	red	f
+130	2026-07-23 09:07:36.271116+00	red	red	t
+131	2026-07-23 09:07:38.410715+00	red	red	t
+132	2026-07-23 09:07:45.847917+00	blue	red	f
+133	2026-07-23 09:07:47.969542+00	blue	red	f
+134	2026-07-23 09:09:22.713952+00	blue	red	f
+135	2026-07-23 09:09:24.888107+00	blue	red	f
+136	2026-07-23 09:09:25.20373+00	blue	red	f
+137	2026-07-23 09:11:03.227397+00	yellow	red	f
+138	2026-07-23 09:11:05.343574+00	yellow	red	f
+139	2026-07-23 09:13:05.20584+00	green	red	f
+140	2026-07-23 09:13:07.336908+00	green	red	f
+141	2026-07-23 09:13:17.044105+00	red	red	t
+142	2026-07-23 09:13:19.312067+00	red	red	t
+143	2026-07-23 09:13:26.280426+00	green	red	f
+144	2026-07-23 09:13:28.392395+00	green	red	f
+145	2026-07-23 09:14:04.816641+00	green	red	f
+146	2026-07-23 09:14:07.342926+00	green	red	f
+147	2026-07-23 09:14:13.527424+00	red	red	t
+148	2026-07-23 09:14:17.628414+00	red	red	t
+149	2026-07-23 09:14:21.445874+00	blue	red	f
+150	2026-07-23 09:14:25.525325+00	blue	red	f
+151	2026-07-23 09:19:14.186663+00	red	red	t
+152	2026-07-23 09:19:16.338156+00	red	red	t
+153	2026-07-23 09:19:20.867038+00	red	red	t
+154	2026-07-23 09:19:22.985217+00	red	red	t
+155	2026-07-24 08:52:18.877936+00	blue	red	f
+156	2026-07-24 08:52:22.949895+00	blue	red	f
+157	2026-07-24 08:52:25.590451+00	red	red	t
+158	2026-07-24 08:52:29.628196+00	red	red	t
+159	2026-07-24 08:52:29.743172+00	red	red	t
+160	2026-07-24 08:52:33.797092+00	red	red	t
+161	2026-07-24 08:52:37.217314+00	blue	red	f
+162	2026-07-24 08:52:41.268159+00	blue	red	f
+163	2026-07-24 08:52:41.625575+00	blue	red	f
+164	2026-07-24 08:52:45.681679+00	blue	red	f
+165	2026-07-24 08:52:47.615014+00	blue	red	f
+166	2026-07-24 08:52:51.666845+00	blue	red	f
+167	2026-07-24 08:53:04.642863+00	yellow	red	f
+168	2026-07-24 08:53:08.676819+00	yellow	red	f
+169	2026-07-24 08:53:19.220167+00	green	red	f
+170	2026-07-24 08:53:23.297077+00	green	red	f
+171	2026-07-24 08:53:24.602772+00	red	red	t
+172	2026-07-24 08:53:28.639009+00	red	red	t
+173	2026-07-24 08:53:28.644977+00	blue	red	f
+174	2026-07-24 08:53:32.707117+00	blue	red	f
+175	2026-07-24 08:57:31.441214+00	white	white	t
+176	2026-07-24 08:57:33.488505+00	white	white	t
+177	2026-07-24 08:57:35.519696+00	white	white	t
+178	2026-07-24 08:57:37.5326+00	white	white	t
+179	2026-07-24 08:57:39.575483+00	white	white	t
+180	2026-07-24 08:57:41.607772+00	white	white	t
+181	2026-07-24 08:57:43.640712+00	white	white	t
+182	2026-07-24 08:57:45.663691+00	white	white	t
+183	2026-07-24 08:57:47.695947+00	white	white	t
+184	2026-07-24 08:57:49.732428+00	white	white	t
+185	2026-07-24 08:57:51.768811+00	white	white	t
+186	2026-07-24 08:57:53.792188+00	white	white	t
+187	2026-07-24 08:57:55.824445+00	white	white	t
+188	2026-07-24 08:57:57.848034+00	white	white	t
+189	2026-07-24 08:57:59.897597+00	white	white	t
+190	2026-07-24 08:58:01.934584+00	white	white	t
+191	2026-07-24 08:58:03.961952+00	white	white	t
+192	2026-07-24 08:58:07.998071+00	white	white	t
+193	2026-07-24 08:58:36.561663+00	red	white	f
+194	2026-07-24 08:58:40.82061+00	red	white	f
+\.
+
+
+--
+-- TOC entry 5024 (class 0 OID 16417)
+-- Dependencies: 221
+-- Data for Name: system_settings; Type: TABLE DATA; Schema: public; Owner: postgres
+--
+
+COPY public.system_settings (id, target_color, is_enabled, proximity_active) FROM stdin;
+1	green	f	f
+\.
+
+
+--
+-- TOC entry 5031 (class 0 OID 0)
+-- Dependencies: 220
+-- Name: sorting_logs_id_seq; Type: SEQUENCE SET; Schema: public; Owner: postgres
+--
+
+SELECT pg_catalog.setval('public.sorting_logs_id_seq', 194, true);
+
+
+--
+-- TOC entry 4872 (class 2606 OID 16428)
+-- Name: sorting_logs sorting_logs_pkey; Type: CONSTRAINT; Schema: public; Owner: postgres
+--
+
+ALTER TABLE ONLY public.sorting_logs
+    ADD CONSTRAINT sorting_logs_pkey PRIMARY KEY (id);
+
+
+--
+-- TOC entry 4874 (class 2606 OID 16430)
+-- Name: system_settings system_settings_pkey; Type: CONSTRAINT; Schema: public; Owner: postgres
+--
+
+ALTER TABLE ONLY public.system_settings
+    ADD CONSTRAINT system_settings_pkey PRIMARY KEY (id);
+
+
+--
+-- TOC entry 4869 (class 1259 OID 16431)
+-- Name: idx_logs_is_success; Type: INDEX; Schema: public; Owner: postgres
+--
+
+CREATE INDEX idx_logs_is_success ON public.sorting_logs USING btree (is_success);
+
+
+--
+-- TOC entry 4870 (class 1259 OID 16432)
+-- Name: idx_logs_timestamp; Type: INDEX; Schema: public; Owner: postgres
+--
+
+CREATE INDEX idx_logs_timestamp ON public.sorting_logs USING btree ("timestamp" DESC);
+
+
+-- Completed on 2026-07-24 17:00:21
+
+--
+-- PostgreSQL database dump complete
+--
+
+\unrestrict b20GCERVvL0nTPHzrCc4DSjZmM9T7CZkX0SgNOLDBqkf6pRoSwAsIRvwUaWIyBL
+

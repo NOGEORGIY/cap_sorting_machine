@@ -1,0 +1,164 @@
+/* capsSortUi/src/css/machine-control-page.css */
+
+.machine-control-page {
+  display: flex;
+  flex-direction: column;
+  gap: 16px;
+}
+
+/* ===== ТУЛБАР ===== */
+.machine-control-page__toolbar {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 12px;
+  padding: 12px 16px;
+  border: 1px solid #a9a9a9;
+  border-radius: 10px;
+  background: #ffffff;
+  flex-wrap: wrap;
+}
+
+/* ===== ЛЕВАЯ ЧАСТЬ: КНОПКИ ===== */
+.machine-controls__actions {
+  display: flex;
+  gap: 8px;
+}
+
+.machine-controls__button {
+  padding: 10px 18px !important;
+  font-size: 14px !important;
+  min-width: 100px;
+}
+
+/* ===== ПРАВАЯ ЧАСТЬ: НАСТРОЙКИ ===== */
+.machine-control-page__settings {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  flex-wrap: wrap;
+}
+
+/* ===== СТАТУС ===== */
+.machine-status {
+  display: flex;
+  align-items: center;
+  gap: 6px;
+}
+
+.machine-status__label {
+  font-size: 13px;
+  white-space: nowrap;
+}
+
+.machine-status__value {
+  padding: 4px 12px;
+  font-size: 13px;
+  min-width: 80px;
+  border-radius: 4px;
+}
+
+/* ===== ВЫБОР ЦВЕТА ===== */
+.color-select {
+  display: flex;
+  align-items: center;
+  gap: 4px;
+}
+
+.color-select__label {
+  font-size: 13px;
+  white-space: nowrap;
+}
+
+.color-select__control {
+  padding: 4px 8px;
+  font-size: 13px;
+  min-width: 80px;
+  border-radius: 4px;
+}
+
+/* ===== ПЕРЕКЛЮЧАТЕЛЬ ===== */
+.sensor-toggle {
+  padding: 4px 10px !important;
+  gap: 8px !important;
+  border-radius: 6px !important;
+}
+
+.sensor-toggle__label {
+  font-size: 11px !important;
+}
+
+.sensor-toggle__mode {
+  font-size: 9px !important;
+  padding: 1px 6px !important;
+}
+
+.sensor-toggle__slider {
+  width: 32px !important;
+  height: 18px !important;
+}
+
+.sensor-toggle__circle {
+  width: 14px !important;
+  height: 14px !important;
+}
+
+.sensor-toggle__circle--active {
+  transform: translateX(14px) !important;
+}
+
+.sensor-toggle__status {
+  font-size: 10px !important;
+  min-width: 24px !important;
+}
+
+/* ===== АДАПТИВНОСТЬ ===== */
+@media (max-width: 1024px) {
+  .machine-control-page__toolbar {
+    flex-direction: column;
+    align-items: stretch;
+  }
+
+  .machine-control-page__settings {
+    justify-content: flex-start;
+    flex-wrap: wrap;
+  }
+
+  .machine-controls__button {
+    flex: 1;
+    min-width: 80px;
+  }
+}
+
+@media (max-width: 600px) {
+  .machine-control-page__settings {
+    flex-direction: column;
+    align-items: stretch;
+    gap: 8px;
+  }
+
+  .machine-controls__actions {
+    flex-direction: column;
+  }
+
+  .machine-controls__button {
+    width: 100%;
+  }
+
+  .color-select {
+    justify-content: space-between;
+  }
+
+  .color-select__control {
+    flex: 1;
+    min-width: 60px;
+  }
+
+  .machine-status {
+    justify-content: space-between;
+  }
+
+  .sensor-toggle {
+    justify-content: space-between !important;
+  }
+}
