@@ -212,7 +212,7 @@ def main_cv_loop():
     logging.info(f"📦 Загрузка кастомной модели YOLO: {MODEL_PATH}...")
     model = YOLO(MODEL_PATH)
 
-    cap = cv2.VideoCapture(0)
+    cap = cv2.VideoCapture(1)
     if not cap.isOpened():
         logging.error("Не удалось открыть камеру!")
         return
